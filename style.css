@@ -313,6 +313,12 @@ body::before {
     background-color: #e5e7eb;
 }
 
+.btn-runaway {
+    transition: transform 0.2s ease-out;
+    position: relative;
+    z-index: 50;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .hero h1 {
