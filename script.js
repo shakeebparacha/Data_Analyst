@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Calculate a random displacement widely across the screen
             const maxX = window.innerWidth * 0.8; // 80% of screen width
             const maxY = window.innerHeight * 0.8; // 80% of screen height
-            
+
             const x = (Math.random() - 0.5) * maxX; // random between -40% and 40% of screen width
             const y = (Math.random() - 0.5) * maxY; // random between -40% and 40% of screen height
 

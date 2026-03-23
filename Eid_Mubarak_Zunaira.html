@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eid Mubarak, Zunaira! 🤍</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Hero Section -->
     <header class="hero">
         <h1>Eid Mubarak, Zunaira Shoaib! 🤍</h1>
-        <p>Eid Mubarak from your teacher, Shakeeb! Pick your Eidi amount — I’ll prepare it... EVENTUALLY (or send it to your account depending on my mood 😜), inshaAllah.</p>
+        <p>Eid Mubarak from your teacher, Shakeeb! Pick your Eidi amount — I’ll prepare it... EVENTUALLY (or send it to
+            your account depending on my mood 😜), inshaAllah.</p>
         <button class="btn-main" onclick="scrollToEidi()">Choose Your Eidi</button>
     </header>
 
@@ -41,7 +44,8 @@
             <div class="card">
                 <h3>Eidi – 5000 PKR</h3>
                 <p>A generous Eidi! Wait, did I say 5000? I meant 50... just kidding! (My wallet is crying) 😭💸</p>
-                <button class="btn-select btn-runaway" id="btn-5000" onclick="selectEidi('5000 PKR', 5000)">Select this Eidi</button>
+                <button class="btn-select btn-runaway" id="btn-5000" onclick="selectEidi('5000 PKR', 5000)">Select this
+                    Eidi</button>
             </div>
         </div>
     </section>
@@ -57,7 +61,8 @@
             <!-- Confirm Content -->
             <div id="confirm-content">
                 <h3>Are you sure?</h3>
-                <p id="confirm-message">Are you sure you want this Eidi? I’ll prepare it with the exact Pakistani rupee note ({amount}) and give it to you in real life, inshaAllah! 😊</p>
+                <p id="confirm-message">Are you sure you want this Eidi? I’ll prepare it with the exact Pakistani rupee
+                    note ({amount}) and give it to you in real life, inshaAllah! 😊</p>
                 <div class="modal-actions">
                     <button class="btn-cancel" onclick="closeModal()">Cancel</button>
                     <button class="btn-confirm" onclick="confirmEidi()">Yes, please!</button>
@@ -68,9 +73,10 @@
             <div id="result-content" class="result-content">
                 <h3>Done! 🎉</h3>
                 <p>I’ll prepare your Eidi in the amount you chose, inshaAllah. Eid Mubarak, Zunaira! 🤍</p>
-                <a id="whatsapp-link" href="#" class="btn-whatsapp" target="_blank" onclick="closeModal()">Message me on WhatsApp</a>
+                <a id="whatsapp-link" href="#" class="btn-whatsapp" target="_blank" onclick="closeModal()">Message me on
+                    WhatsApp</a>
                 <div>
-                   <button class="btn-close" onclick="closeModal()">Close</button>
+                    <button class="btn-close" onclick="closeModal()">Close</button>
                 </div>
             </div>
         </div>
@@ -79,4 +85,5 @@
     <!-- JavaScript Actions -->
     <script src="script.js"></script>
 </body>
+
 </html>
