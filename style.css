@@ -7,7 +7,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8fbfd; /* soft cream/blue mix */
+    background-color: #f8fbfd;
+    /* soft cream/blue mix */
     color: #333;
     text-align: center;
     position: relative;
@@ -23,8 +24,10 @@ body::before {
     height: 100vh;
     background-image: url('zunaira.jpg');
     background-size: cover;
-    background-position: center top; /* Focuses on the top portion, cropping legs */
-    opacity: 0.10; /* Low opacity watermark */
+    background-position: center top;
+    /* Focuses on the top portion, cropping legs */
+    opacity: 0.50;
+    /* Low opacity watermark */
     z-index: -1;
 }
 
@@ -55,7 +58,8 @@ body::before {
 }
 
 .btn-main {
-    background-color: #fbbf24; /* subtle gold */
+    background-color: #fbbf24;
+    /* subtle gold */
     color: #fff;
     border: none;
     padding: 15px 30px;
@@ -76,7 +80,8 @@ body::before {
 /* Eidi Section */
 .eidi-section {
     padding: 80px 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent to let image show */
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Semi-transparent to let image show */
 }
 
 .eidi-section h2 {
@@ -98,7 +103,7 @@ body::before {
     border: 2px solid #e0f2fe;
     border-radius: 15px;
     padding: 30px 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
@@ -160,7 +165,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,7 +187,7 @@ body::before {
     border-radius: 20px;
     max-width: 450px;
     width: 90%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     transform: translateY(20px) scale(0.95);
     transition: transform 0.3s, opacity 0.3s;
     opacity: 0;
@@ -257,8 +262,13 @@ body::before {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .result-content h3 {
@@ -308,6 +318,7 @@ body::before {
     .hero h1 {
         font-size: 2rem;
     }
+
     .modal-actions {
         flex-direction: column;
     }
