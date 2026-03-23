@@ -76,13 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
     runawayButtons.forEach(btn => {
         let interactionCount = 0;
         const originalText = btn.textContent;
+        let hasCloned = false;
 
         const jumpAway = function (e) {
             interactionCount++;
 
             if (interactionCount > 10) {
                 // After 10 times, let her click it without jumping
-                this.style.transform = "translate(0, 0) scale(1)";
+                this.style.transform = "translate(0, 0)";
                 this.textContent = originalText;
                 return;
             }
@@ -94,7 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const x = (Math.random() - 0.5) * maxX; // random between -40% and 40% of screen width
             const y = (Math.random() - 0.5) * maxY; // random between -40% and 40% of screen height
 
-            this.style.transform = `translate(${x}px, ${y}px) scale(0.6)`;
+            // Keeping the original size, just jumping
+            this.style.transform = `translate(${x}px, ${y}px)`;
 
             const funnyMessages = [
                 "Catch me! 🏃‍♂️",
@@ -111,6 +113,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
                 e.stopPropagation();
             }
+
+            // Special case explosion for 5000 PKR button
+            if (this.id === 'btn-5000' && !hasCloned) {
+                hasCloned = true;
+                this.style.position = 'relative'; // Ensure proper relative context
+                this.style.zIndex = '100';
+
+                // Spawn 4 clones
+                for (let i = 0; i < 4; i++) {
+                    createFakeButton(this);
+                }
+
+                // Add continuous roaming for the real 5000 button too
+                let continuousJumps = 0;
+                let roamInterval = setInterval(() => {
+                    continuousJumps++;
+                    if (continuousJumps > 15 || interactionCount > 10) {
+                        clearInterval(roamInterval);
+                        this.style.transform = "translate(0, 0)";
+                        this.textContent = originalText;
+                    } else {
+                        const nx = (Math.random() - 0.5) * window.innerWidth * 0.8;
+                        const ny = (Math.random() - 0.5) * window.innerHeight * 0.8;
+                        this.style.transform = `translate(${nx}px, ${ny}px)`;
+                        this.textContent = originalText; // Keep making it look like the real option
+                    }
+                }, 800);
+            }
         };
 
         btn.addEventListener('mouseenter', jumpAway);
@@ -122,6 +152,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
             }
             jumpAway.call(this, e);
-        });
+        }, { passive: false });
     });
+
+    function createFakeButton(originalBtn) {
+        const clone = originalBtn.cloneNode(true);
+        clone.id = ""; // Remove ID so it's not detected as the real one
+        
+        const rect = originalBtn.getBoundingClientRect();
+        clone.style.position = 'fixed';
+        clone.style.top = rect.top + 'px';
+        clone.style.left = rect.left + 'px';
+        clone.style.transform = 'translate(0px, 0px)';
+        clone.style.zIndex = "99";
+        clone.style.margin = "0";
+        document.body.appendChild(clone);
+
+        // Make clone completely fake on click
+        clone.removeAttribute('onclick');
+        clone.onclick = function(e) {
+            e.preventDefault();
+            alert("Haha! This is a fake. The real one is hiding! 😂");
+        };
+
+        let jumps = 0;
+        let roamInterval = setInterval(() => {
+            jumps++;
+            if (jumps > 15) {
+                clearInterval(roamInterval);
+                clone.style.transform = "translate(0, 0)";
+                clone.textContent = "Fake 5000 PKR 😂";
+            } else {
+                const nx = (Math.random() - 0.5) * window.innerWidth * 0.8;
+                const ny = (Math.random() - 0.5) * window.innerHeight * 0.8;
+                clone.style.transform = `translate(${nx}px, ${ny}px)`;
+                clone.textContent = originalBtn.textContent; // Masquerade as the option
+            }
+        }, 800);
+        
+        // Initial scatter immediately
+        setTimeout(() => {
+            const nx = (Math.random() - 0.5) * window.innerWidth * 0.8;
+            const ny = (Math.random() - 0.5) * window.innerHeight * 0.8;
+            clone.style.transform = `translate(${nx}px, ${ny}px)`;
+        }, 50);
+
+        // Jump away on hover too
+        clone.addEventListener('mouseenter', function(e) {
+            const nx = (Math.random() - 0.5) * window.innerWidth * 0.8;
+            const ny = (Math.random() - 0.5) * window.innerHeight * 0.8;
+            clone.style.transform = `translate(${nx}px, ${ny}px)`;
+        });
+    }
 });
