@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak, Zunaira! 🤍</title>
+    <style>
+        /* CSS reset and base styles */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fbfd; /* soft cream/blue mix */
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Fixed background image with low opacity */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* We will ask the user to save the image as zunaira_bg.jpg in the same folder */
+            background-image: url('zunaira_bg.jpg');
+            background-size: cover;
+            background-position: center 15%; /* Focuses on the face */
+            opacity: 0.20; /* Low opacity watermark */
+            z-index: -1;
+        }
+
+        /* Header / Hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.5), rgba(254, 252, 232, 0.5));
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #0369a1;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .btn-main {
+            background-color: #fbbf24; /* subtle gold */
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background-color 0.2s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-main:hover {
+            background-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+
+        /* Eidi Section */
+        .eidi-section {
+            padding: 80px 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent to let image show */
+        }
+
+        .eidi-section h2 {
+            font-size: 2rem;
+            color: #0369a1;
+            margin-bottom: 40px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #f0f9ff;
+            border: 2px solid #e0f2fe;
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #fbbf24;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #0284c7;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #64748b;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn-select {
+            background-color: #bae6fd;
+            color: #0369a1;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-select:hover {
+            background-color: #7dd3fc;
+        }
+
+        .footer {
+            background-color: rgba(224, 242, 254, 0.8);
+            padding: 40px 20px;
+            color: #0369a1;
+        }
+
+        .footer p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal {
+            background-color: #fff;
+            padding: 35px 30px;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .modal h3 {
+            color: #0369a1;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .modal p {
+            color: #4b5563;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .btn-cancel {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            flex: 1;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #e5e7eb;
+        }
+
+        .btn-confirm {
+            background-color: #fbbf24;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            flex: 1;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-confirm:hover {
+            background-color: #f59e0b;
+        }
+
+        /* Final Result Section inside modal */
+        .result-content {
+            display: none;
+        }
+
+        .result-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .result-content h3 {
+            color: #10b981;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .btn-close {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .btn-close:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Eid Mubarak, Zunaira Shoaib! 🤍</h1>
+        <p>This is a special Eid greeting from your teacher, Shakeeb. Now choose your Eidi amount and I’ll prepare it for you in real life, inshaAllah.</p>
+        <button class="btn-main" onclick="scrollToEidi()">Choose Your Eidi</button>
+    </header>
+
+    <!-- Eidi Section -->
+    <section class="eidi-section" id="eidi-section">
+        <h2>Choose Your Eidi Amount</h2>
+        <div class="cards-container">
+            <!-- Option 1 -->
+            <div class="card">
+                <h3>Eidi – 10 PKR</h3>
+                <p>A small loving Eidi with a 10‑rupee note.</p>
+                <button class="btn-select" onclick="selectEidi('10 PKR', 10)">Select this Eidi</button>
+            </div>
+            <!-- Option 2 -->
+            <div class="card">
+                <h3>Eidi – 100 PKR</h3>
+                <p>A nice Eidi with a 100‑rupee note.</p>
+                <button class="btn-select" onclick="selectEidi('100 PKR', 100)">Select this Eidi</button>
+            </div>
+            <!-- Option 3 -->
+            <div class="card">
+                <h3>Eidi – 1000 PKR</h3>
+                <p>A good Eidi with a 1000‑rupee note.</p>
+                <button class="btn-select" onclick="selectEidi('1000 PKR', 1000)">Select this Eidi</button>
+            </div>
+            <!-- Option 4 -->
+            <div class="card">
+                <h3>Eidi – 5000 PKR</h3>
+                <p>A special generous Eidi with a 5000‑rupee note.</p>
+                <button class="btn-select" onclick="selectEidi('5000 PKR', 5000)">Select this Eidi</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>"May Allah bless you, Zunaira, with success in your studies, good health, and a bright future. Ameen."</p>
+    </footer>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <!-- Confirm Content -->
+            <div id="confirm-content">
+                <h3>Are you sure?</h3>
+                <p id="confirm-message">Are you sure you want this Eidi? I’ll prepare it with the exact Pakistani rupee note ({amount}) and give it to you in real life, inshaAllah! 😊</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button class="btn-confirm" onclick="confirmEidi()">Yes, please!</button>
+                </div>
+            </div>
+
+            <!-- Result Content -->
+            <div id="result-content" class="result-content">
+                <h3>Done! 🎉</h3>
+                <p>I’ll prepare your Eidi in the amount you chose, inshaAllah. Eid Mubarak, Zunaira! 🤍</p>
+                <a id="whatsapp-link" href="#" class="btn-whatsapp" target="_blank" onclick="closeModal()">Message me on WhatsApp</a>
+                <div>
+                   <button class="btn-close" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Actions -->
+    <script>
+        let selectedAmountText = '';
+        let selectedAmountValue = '';
+
+        function scrollToEidi() {
+            document.getElementById('eidi-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open Modal and Setup Confirmation
+        function selectEidi(amountText, amountValue) {
+            selectedAmountText = amountText;
+            selectedAmountValue = amountValue;
+            
+            const message = `Are you sure you want this Eidi? I’ll prepare it with the exact Pakistani rupee note (${amountValue}) and give it to you in real life, inshaAllah! 😊`;
+            document.getElementById('confirm-message').textContent = message;
+            
+            // Show confirm content, hide result content
+            document.getElementById('confirm-content').style.display = 'block';
+            document.getElementById('result-content').classList.remove('active');
+            
+            // Show modal
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+            
+            // Allow time for animation to finish before resetting display
+            setTimeout(() => {
+                document.getElementById('confirm-content').style.display = 'block';
+                document.getElementById('result-content').classList.remove('active');
+            }, 300);
+        }
+
+        // Confirm Selection and Show WhatsApp Link
+        function confirmEidi() {
+            // Transition from Confirmation to Result
+            document.getElementById('confirm-content').style.display = 'none';
+            document.getElementById('result-content').classList.add('active');
+            
+            // Prepare WhatsApp link
+            // Given WhatsApp number: +923245514735
+            const phoneNumber = "923245514735";
+            const textMessage = `I chose Eidi amount ${selectedAmountText} on your website.`;
+            const encodedText = encodeURIComponent(textMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+            
+            document.getElementById('whatsapp-link').href = whatsappUrl;
+        }
+
+        // Close on background click
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
