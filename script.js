@@ -254,6 +254,11 @@ const savedThemeSetting = localStorage.getItem('theme');
 if (savedThemeSetting) {
     htmlElement.setAttribute('data-theme', savedThemeSetting);
     updateThemeIconStyle(savedThemeSetting);
+} else {
+    // Default to light mode heavily
+    htmlElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    updateThemeIconStyle('light');
 }
 
 // Toggle Event Listener
