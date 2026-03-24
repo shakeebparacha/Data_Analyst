@@ -28,7 +28,7 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('zunaira.jpg');
+    background-image: var(--bg-image, url('background.jpg'));
     background-size: cover;
     background-position: center top;
     /* Focuses on the top portion, cropping legs */
@@ -530,4 +530,34 @@ body::before {
 [data-theme="dark"] .theme-toggle {
     background: rgba(30, 41, 59, 0.8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Init Modal Styles */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0369a1;
+    font-weight: 600;
+}
+.input-group input[type="text"],
+.input-group input[type="url"],
+.input-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+[data-theme="dark"] .input-group label {
+    color: #38bdf8;
+}
+[data-theme="dark"] .input-group input {
+    background-color: #334155;
+    color: #f1f5f9;
+    border-color: #475569;
 }

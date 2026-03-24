@@ -10,6 +10,31 @@
 
 <body>
 
+    <!-- Initialization Modal -->
+    <div class="modal-overlay active" id="init-modal" style="background-color: rgba(0,0,0,0.9);">
+        <div class="modal">
+            <h3>Welcome!</h3>
+            <p>Please enter your details to personalize this experience.</p>
+            <form id="init-form" onsubmit="handleInit(event)">
+                <div class="input-group">
+                    <label for="user-name">Your Name (Required)</label>
+                    <input type="text" id="user-name" required placeholder="Enter your name">
+                </div>
+                <div class="input-group">
+                    <label for="user-pic">Profile Picture URL (Optional)</label>
+                    <input type="url" id="user-pic" placeholder="Image URL (e.g., https://...)">
+                </div>
+                <div class="input-group">
+                    <label for="user-pic-file">Or Upload Picture (Optional)</label>
+                    <input type="file" id="user-pic-file" accept="image/*">
+                </div>
+                <div class="modal-actions" style="margin-top: 20px;">
+                    <button type="submit" class="btn-confirm" style="width: 100%;">Let's Go!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Theme Toggle Button -->
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
         <span id="theme-icon">🌙</span>
@@ -17,7 +42,7 @@
 
     <!-- Hero Section -->
     <header class="hero">
-        <h1>Eid Mubarak, Zunaira Shoaib! 🤍</h1>
+        <h1>Eid Mubarak, <span id="hero-name">Zunaira Shoaib</span>! 🤍</h1>
         <h2 class="typing-container"><span id="typed-text"></span><span class="cursor">|</span></h2>
         <p>Eid Mubarak from your teacher, Shakeeb! Pick your Eidi amount — I’ll prepare it... EVENTUALLY (or send it to
             your account depending on my mood 😜), inshaAllah.</p>
@@ -62,7 +87,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>"May Allah bless you, Zunaira, with success in your studies, good health, and a bright future. Ameen."</p>
+        <p>"May Allah bless you, <span id="footer-name">Zunaira</span>, with success in your studies, good health, and a bright future. Ameen."</p>
     </footer>
 
     <!-- Modal Overlay -->
@@ -82,7 +107,7 @@
             <!-- Result Content -->
             <div id="result-content" class="result-content">
                 <h3>Done! 🎉</h3>
-                <p>I’ll prepare your Eidi in the amount you chose, inshaAllah. Eid Mubarak, Zunaira! 🤍</p>
+                <p>I’ll prepare your Eidi in the amount you chose, inshaAllah. Eid Mubarak, <span id="result-name">Zunaira</span>! 🤍</p>
                 <a id="whatsapp-link" href="#" class="btn-whatsapp" target="_blank" onclick="closeModal()">Message me on
                     WhatsApp</a>
                 <div>

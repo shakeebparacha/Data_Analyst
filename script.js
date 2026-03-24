@@ -32,9 +32,35 @@ function typeEffect() {
     setTimeout(typeEffect, deleting ? 60 : 90);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(typeEffect, 500);
-});
+function handleInit(event) {
+    event.preventDefault();
+    const nameInput = document.getElementById('user-name').value.trim();
+    if (!nameInput) return;
+
+    const picUrl = document.getElementById('user-pic').value.trim();
+    const picFile = document.getElementById('user-pic-file').files[0];
+
+    const shortName = nameInput.split(' ')[0];
+    document.title = `Eid Mubarak, ${shortName}! 🤍`;
+    document.getElementById('hero-name').textContent = nameInput;
+    document.getElementById('footer-name').textContent = shortName;
+    document.getElementById('result-name').textContent = shortName;
+
+    if (picFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.documentElement.style.setProperty('--bg-image', `url('${e.target.result}')`);
+        };
+        reader.readAsDataURL(picFile);
+    } else if (picUrl) {
+        document.documentElement.style.setProperty('--bg-image', `url('${picUrl}')`);
+    }
+
+    document.getElementById('init-modal').style.display = 'none';
+    
+    // Start typing effect only after initialization!
+    setTimeout(typeEffect, 500); 
+}
 
 let selectedAmountText = '';
 let selectedAmountValue = '';
