@@ -243,3 +243,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Theme Toggle Logic
+const htmlElement = document.documentElement;
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeIconSpan = document.getElementById('theme-icon');
+
+// Check Local Storage
+const savedThemeSetting = localStorage.getItem('theme');
+if (savedThemeSetting) {
+    htmlElement.setAttribute('data-theme', savedThemeSetting);
+    updateThemeIconStyle(savedThemeSetting);
+}
+
+// Toggle Event Listener
+if(themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        htmlElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        updateThemeIconStyle(nextTheme);
+    });
+}
+
+function updateThemeIconStyle(theme) {
+    if(themeIconSpan) {
+        themeIconSpan.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+}

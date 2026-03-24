@@ -446,3 +446,88 @@ body::before {
         font-size: 1rem;
     }
 }
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s, background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] body {
+    background-color: #0f172a;
+    color: #f1f5f9;
+}
+[data-theme="dark"] body::before {
+    opacity: 0.45;
+    filter: brightness(0.6) contrast(1.1);
+}
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.65), rgba(30, 41, 59, 0.65));
+}
+[data-theme="dark"] .hero h1, 
+[data-theme="dark"] .eidi-section h2, 
+[data-theme="dark"] .card h3, 
+[data-theme="dark"] .modal h3, 
+[data-theme="dark"] .footer, 
+[data-theme="dark"] .typing-container {
+    color: #38bdf8;
+}
+[data-theme="dark"] .hero p, 
+[data-theme="dark"] .card p, 
+[data-theme="dark"] .modal p {
+    color: #cbd5e1;
+}
+[data-theme="dark"] .eidi-section {
+    background-color: rgba(15, 23, 42, 0.75);
+}
+[data-theme="dark"] .card {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+[data-theme="dark"] .card:hover {
+    border-color: #fbbf24;
+}
+[data-theme="dark"] .btn-select {
+    background-color: #0284c7;
+    color: #f1f5f9;
+}
+[data-theme="dark"] .btn-select:hover {
+    background-color: #0369a1;
+}
+[data-theme="dark"] .footer {
+    background-color: rgba(15, 23, 42, 0.9);
+}
+[data-theme="dark"] .modal {
+    background-color: #1e293b;
+}
+[data-theme="dark"] .btn-cancel, 
+[data-theme="dark"] .btn-close {
+    background-color: #334155;
+    color: #f1f5f9;
+}
+[data-theme="dark"] .btn-cancel:hover, 
+[data-theme="dark"] .btn-close:hover {
+    background-color: #475569;
+}
+[data-theme="dark"] .theme-toggle {
+    background: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
