@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open Eid_Mubarak_Zunaira.html",
-            "file": "c:\\Users\\Shakeeb\\Downloads\\Data_Analyst\\Eid_Mubarak_Zunaira.html"
+            "name": "Open index.html",
+            "file": "${workspaceFolder}/index.html"
         }
     ]
 }

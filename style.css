@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -12,6 +17,7 @@ body {
     color: #333;
     text-align: center;
     position: relative;
+    overflow-x: hidden;
 }
 
 /* Fixed background image with low opacity */
@@ -29,6 +35,28 @@ body::before {
     opacity: 0.50;
     /* Low opacity watermark */
     z-index: -1;
+}
+
+/* Typing Effect Cursor */
+.typing-container {
+    height: 35px;
+    font-size: 1.5rem;
+    color: #0369a1;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    margin-left: 2px;
+    background-color: #0369a1;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 /* Header / Hero section */
@@ -332,13 +360,89 @@ body::before {
     z-index: 50;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* Responsive adjustments for mobile and tablets */
+@media (max-width: 768px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    .eidi-section {
+        padding: 60px 15px;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+    }
+    
+    .card {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 15px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .btn-main {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
+
+    .eidi-section {
+        padding: 40px 15px;
+    }
+
+    .eidi-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr; /* Full width for very small screens */
+    }
+
+    .modal {
+        padding: 25px 20px;
+    }
+    
+    .modal h3 {
+        font-size: 1.2rem;
+    }
+    
+    .modal p {
+        font-size: 1rem;
+        margin-bottom: 20px;
     }
 
     .modal-actions {
         flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-cancel, .btn-confirm {
+        width: 100%;
+        padding: 14px 20px; /* Larger tap targets */
+    }
+
+    .footer {
+        padding: 25px 15px;
+    }
+    
+    .footer p {
+        font-size: 1rem;
     }
 }

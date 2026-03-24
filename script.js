@@ -1,3 +1,41 @@
+// Typewriter Effect Variables
+const titles = [
+    "I hope you enjoy your Eidi! ✨",
+    "Pick any amount you'd like... 🎁",
+    "Wait... maybe not the 5000 one! 💸 😂",
+    "Just kidding... choose whatever! 😄",
+    "Prepare for some funny buttons... 🏃‍♂️"
+];
+let titleIdx = 0;
+let charIdx = 0;
+let deleting = false;
+
+function typeEffect() {
+    const typedEl = document.getElementById("typed-text");
+    if (!typedEl) return;
+    
+    const current = titles[titleIdx];
+    if (!deleting) {
+        typedEl.textContent = current.slice(0, ++charIdx);
+        if (charIdx === current.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1800);
+            return;
+        }
+    } else {
+        typedEl.textContent = current.slice(0, --charIdx);
+        if (charIdx === 0) {
+            deleting = false;
+            titleIdx = (titleIdx + 1) % titles.length;
+        }
+    }
+    setTimeout(typeEffect, deleting ? 60 : 90);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(typeEffect, 500);
+});
+
 let selectedAmountText = '';
 let selectedAmountValue = '';
 
